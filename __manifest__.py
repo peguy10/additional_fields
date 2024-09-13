@@ -6,7 +6,7 @@
     'description': 'Ce module ajoute les champs suivants au modèle de produits: Sous-famille, Famille, Rayon.',
     'author': 'INOV CAMEROON',
     'website': 'https://inov.cm',
-    'depends': ['base','sale','product'],
+    'depends': ['base','sale','product','point_of_sale'],
     'data': [
         'security/ir.model.access.csv',
         'views/product_additional_fields_views.xml',

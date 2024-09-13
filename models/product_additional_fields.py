@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, tools
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
@@ -69,19 +69,32 @@ class PosOrderReport(models.Model):
     family_id = fields.Many2one('product.family', string='Famille', readonly=True)
     sub_family_id = fields.Many2one('product.sub.family', string='Sous-famille', readonly=True)
 
-    def _select_additional_fields(self):
-        res = super()._select_additional_fields()
-        res['rayon_id'] = "t.rayon_id"
-        res['family_id'] = "t.family_id"
-        res['sub_family_id'] = "t.sub_family_id"
-        res['international'] = "t.international"
-        return res
+    def _select(self):
+        rec = super()._select()
+        rec += """
+            , pt.rayon_id AS rayon_id,
+            pt.family_id AS family_id,
+            pt.sub_family_id AS sub_family_id,
+            pt.international AS international
+        """
+        return rec
 
-    def _group_by_sale(self):
-        res = super()._group_by_sale()
-        res += """,
-                t.rayon_id,
-                t.family_id,
-                t.sub_family_id,
-                t.international"""
-        return res
+    def _group_by(self):
+        rec = super()._group_by()
+        rec += """,
+                pt.rayon_id,
+                pt.family_id,
+                pt.sub_family_id,
+                pt.international
+        """
+        return rec
+
+    def init(self):
+        tools.drop_view_if_exists(self._cr, self._table)
+        self._cr.execute("""
+            CREATE OR REPLACE VIEW %s AS (
+                %s
+                %s
+                %s
+            )
+        """ % (self._table, self._select(), self._from(), self._group_by()))
