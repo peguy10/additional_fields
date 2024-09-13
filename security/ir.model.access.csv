@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+additional_fields_to_product.access_product_family,access_product_family,additional_fields_to_product.model_product_family,base.group_user,1,1,1,1
+additional_fields_to_product.access_product_rayon,access_product_rayon,additional_fields_to_product.model_product_rayon,base.group_user,1,1,1,1
+additional_fields_to_product.access_product_sub_family,access_product_sub_family,additional_fields_to_product.model_product_sub_family,base.group_user,1,1,1,1

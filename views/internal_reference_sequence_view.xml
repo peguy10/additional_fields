@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seq_product_internal_reference" model="ir.sequence">
+            <field name="name">Référence Interne Produit</field>
+            <field name="code">product.internal.reference</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

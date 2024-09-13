@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+
+        <!-- Action pour product.family -->
+        <record id="action_product_family" model="ir.actions.act_window">
+            <field name="name">Familles</field>
+            <field name="res_model">product.family</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Action pour product.family -->
+        <record id="action_product_sub_family" model="ir.actions.act_window">
+            <field name="name">Sous Familles</field>
+            <field name="res_model">product.sub.family</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Action pour product.family -->
+        <record id="action_product_rayon" model="ir.actions.act_window">
+            <field name="name">Rayons</field>
+            <field name="res_model">product.rayon</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu parent pour les produits -->
+        <menuitem id="menu_stock_inventory_control" name="Autres" parent="stock.menu_stock_inventory_control" sequence="10"/>
+
+        <!-- Sous-menu pour product.family -->
+        <menuitem id="menu_product_rayon" name="Rayons" parent="menu_stock_inventory_control" action="action_product_rayon" sequence="1"/>
+        <menuitem id="menu_product_family" name="Familles" parent="menu_stock_inventory_control" action="action_product_family" sequence="1"/>
+        <menuitem id="menu_product_sub_family" name="Sous Familles" parent="menu_stock_inventory_control" action="action_product_sub_family" sequence="1"/>
+
+        <!-- Autres sous-menus ici... -->
+
+    </data>
+</odoo>
